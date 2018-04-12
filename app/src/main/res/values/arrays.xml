@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="activity_anim">
+        <item>淡入淡出</item>
+        <item>滑动进入/退出-慢速</item>
+        <item>滑动进入/退出-一般</item>
+        <item>滑动进入/退出-快速</item>
+    </string-array>
+
+    <string-array name="activity_anim_values">
+        <item>ACTIVITY_ANIM_FADE_IN_FADE_OUT</item>
+        <item>ACTIVITY_ANIM_SLIDE_IN_SLIDE_OUT_SLOW</item>
+        <item>ACTIVITY_ANIM_SLIDE_IN_SLIDE_OUT_NORMAL</item>
+        <item>ACTIVITY_ANIM_SLIDE_IN_SLIDE_OUT_FAST</item>
+    </string-array>
+
+    <string-array name="item_anim">
+        <item>无动画</item>
+        <item>左侧滑入</item>
+        <item>右侧滑入</item>
+        <item>底部滑入</item>
+        <item>透明度渐变</item>
+        <item>缩放进入</item>
+    </string-array>
+
+    <string-array name="item_anim_values">
+        <item>ITEM_ANIM_NO_ANIM</item>
+        <item>ITEM_ANIM_SLIDE_IN_LEFT</item>
+        <item>ITEM_ANIM_SLIDE_IN_RIGHT</item>
+        <item>ITEM_ANIM_SLIDE_IN_BOTTOM</item>
+        <item>ITEM_ANIM_ALPHA</item>
+        <item>ITEM_ANIM_SCALE</item>
+    </string-array>
+
+</resources>

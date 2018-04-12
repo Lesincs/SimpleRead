@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lesincs.simpleread">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".base.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher1"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher1"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:configChanges="orientation|screenSize" />
+
+        <activity
+            android:name=".ui.activity.ZHNewsDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/NewsDetailTheme" />
+
+        <activity
+            android:name=".ui.activity.DailyArticleActivity"
+            android:configChanges="orientation|screenSize" />
+
+        <activity
+            android:name=".ui.activity.CollectionActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/SlideExitActivityTheme" />
+
+        <activity
+            android:name=".ui.activity.WebActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/SlideExitActivityTheme" />
+
+        <activity
+            android:name=".ui.activity.InfoActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/SlideExitActivityTheme" />
+
+        <activity
+            android:name=".ui.activity.WelcomeActivity"
+            android:theme="@style/WellComeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activity.JDFreshNewsDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/NewsDetailTheme" />
+
+        <activity
+            android:name=".ui.activity.SettingActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/SlideExitActivityTheme" />
+    </application>
+
+</manifest>

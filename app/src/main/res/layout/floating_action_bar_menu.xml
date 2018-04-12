@@ -1,0 +1,58 @@
+<com.lesincs.simpleread.custom.MyFloatingActionMenu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fabMenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom|end"
+    android:layout_margin="16dp"
+    app:menu_colorNormal="?attr/colorAccent"
+    app:menu_colorPressed="?attr/colorAccent"
+    app:menu_colorRipple="#99FFFFFF"
+    app:menu_fab_size="normal"
+    app:menu_labels_ellipsize="end">
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fabRandomPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_random"
+        app:fab_colorNormal="?attr/colorAccent"
+        app:fab_colorPressed="?attr/colorAccent"
+        app:fab_colorRipple="#99FFFFFF"
+        app:fab_label="@string/random_zh_news"
+        app:fab_size="mini" />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fabChooseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_calendar"
+        app:fab_colorNormal="?attr/colorAccent"
+        app:fab_colorPressed="?attr/colorAccent"
+        app:fab_colorRipple="#99FFFFFF"
+        app:fab_label="@string/choose_date"
+        app:fab_size="mini" />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fabDailyArticleRandom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_daily_article_random"
+        app:fab_colorNormal="?attr/colorAccent"
+        app:fab_colorPressed="?attr/colorAccent"
+        app:fab_colorRipple="#99FFFFFF"
+        app:fab_label="@string/random_article"
+        app:fab_size="mini" />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fabDailyArticle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_daily_article"
+        app:fab_colorNormal="?attr/colorAccent"
+        app:fab_colorPressed="?attr/colorAccent"
+        app:fab_colorRipple="#99FFFFFF"
+        app:fab_label="@string/today_article"
+        app:fab_size="mini" />
+
+</com.lesincs.simpleread.custom.MyFloatingActionMenu>

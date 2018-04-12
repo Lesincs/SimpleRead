@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="动画设置">
+        <ListPreference
+            android:key="ACTIVITY_ANIM"
+            android:defaultValue="ACTIVITY_ANIM_SLIDE_IN_SLIDE_OUT_NORMAL"
+            android:dialogTitle="设置Activity切换动画"
+            android:entries="@array/activity_anim"
+            android:entryValues="@array/activity_anim_values"
+            android:summary="点击设置Activity切换动画"
+            android:title="Activity切换动画">
+
+        </ListPreference>
+
+        <ListPreference
+            android:key="ITEM_ANIM"
+            android:defaultValue="ITEM_ANIM_SCALE"
+            android:dialogTitle="列表加载的动画"
+            android:entries="@array/item_anim"
+            android:entryValues="@array/item_anim_values"
+            android:summary="点击设置列表加载的动画(重启生效)"
+            android:title="列表加载动画" />
+        <SwitchPreference
+            android:key="ITEM_ANIM_IS_FIRST_ONLY"
+            android:summary="开启后,动画仅在第一次可见时加载(重启生效)"
+            android:title="仅第一次可见加载动画"
+            android:defaultValue="false">
+
+        </SwitchPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="其余设置">
+        <SwitchPreference
+            android:key="OPEN_LINK_WITH_INNER_BROWSER"
+            android:summary="开启后，网页链接将在app内部打开"
+            android:title="使用内置浏览器打开链接" />
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

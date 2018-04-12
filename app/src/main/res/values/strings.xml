@@ -1,0 +1,92 @@
+<resources>
+    <string name="app_name">简阅</string>
+
+    //activity_main
+    <string name="press_again_to_exit">再按一次返回键退出</string>
+    <string name="exit">退出</string>
+
+    //activity_about
+    <string name="version_title">版本</string>
+    <string name="version_summary">4.1.10</string>
+    <string name="introduction_title">简介</string>
+    <string name="introduction_summary">以Kotlin实现的简单纯净的阅读软件,主要使用到RxJava+Retrofit+RxLifecycle+Glide+GreenDao等技术</string>
+    <string name="open_source_title">项目已完全开源,欢迎star交流学习</string>
+    <string name="open_source_summary">https://github.com/Lesincs/SimpleRead</string>
+    <string name="author">作者</string>
+    <string name="author_title">cs丶</string>
+    <string name="author_summary">如果你有什么意见和建议,欢迎交流探讨</string>
+    <string name="google_mail_title">GMail</string>
+    <string name="google_mail_summary">lesincs923@gmail.com</string>
+    <string name="fox_mail_title">Fox邮箱</string>
+    <string name="fox_mail_summary">lesincs@foxmail.com</string>
+    <string name="give_a_five_star_title">给个五星</string>
+    <string name="give_a_five_star_summary">点击进入酷安评分</string>
+    <string name="encourage_author">鼓励作者</string>
+    <string name="donate_author_title">捐赠作者</string>
+    <string name="donate_author_summary">点击此处支付宝账号会复制到剪贴板,感谢支持</string>
+    <string name="aliPay_account_copy_success">支付宝账号已经复制到粘贴板~</string>
+    <string name="aliPay_account">691826879@qq.com</string>
+    <string name="no_match_app">没有相关的应用...</string>
+
+    //activity_setting
+    <string name="anim_setting">动画设置</string>
+    <string name="activity_change_anim_title">Activity切换动画</string>
+    <string name="activity_change_anim_summary">点击设置Activity切换动画</string>
+    <string name="item_load_anim_title">列表加载动画</string>
+    <string name="item_load_anim_summary">点击设置列表加载动画</string>
+    <string name="other_setting">其余设置</string>
+    <string name="open_link_with_inner_browser_title">使用内置浏览器打开链接</string>
+    <string name="open_link_with_inner_browser_summary">开启后,网页链接将在App内部打开</string>
+
+    //activity_news_detail
+    <string name="collect_success">收藏成功</string>
+    <string name="cancel_collection">取消收藏</string>
+    <string name="copy_success">复制成功</string>
+
+    //toolbar
+    <string name="toolbar_zh_frag">知乎日报</string>
+    <string name="toolbar_jd_frag">新鲜事</string>
+    <string name="toolbar_collection">收藏</string>
+    <string name="toolbar_about">关于</string>
+    <string name="toolbar_setting">设置</string>
+    <string name="toolbar_loading">loading...</string>
+
+    //menu
+    <string name="menu_change_theme">切换主题</string>
+    <string name="menu_setting">设置</string>
+    <string name="menu_collection">收藏</string>
+    <string name="menu_cancel_collection">取消收藏</string>
+    <string name="menu_about">关于</string>
+    <string name="menu_share">分享</string>
+    <string name="menu_copy_link">复制链接</string>
+    <string name="menu_open_with_browser">用浏览器打开</string>
+
+    //error
+    <string name="load_error">加载失败了...</string>
+    <string name="i_know_it">知道了</string>
+
+    //theme
+    <string name="default_color">默认</string>
+    <string name="alive_red">活力红</string>
+    <string name="bili_pink">哔哩粉</string>
+    <string name="cool_apk_green">酷安绿</string>
+    <string name="duck_green">水鸭青</string>
+    <string name="sky_blue">天空蓝</string>
+    <string name="orange">橙黄橘</string>
+
+    //adapter
+    <string name="collect_time">收藏日期: </string>
+
+    //floating_action_bar_menu
+    <string name="today_article">今日一文</string>
+    <string name="random_article">随机一文</string>
+    <string name="choose_date">选择日期</string>
+    <string name="random_zh_news">随机一篇</string>
+
+    //daily_article_setting
+    <string name="background">背景</string>
+    <string name="white">白</string>
+    <string name="black">黑</string>
+    <string name="brown">棕</string>
+    <string name="text_size">字体大小</string>
+</resources>

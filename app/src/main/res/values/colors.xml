@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="defaultColor">#4285F4</color>
+    <color name="defaultColorDark">#3367d6</color>
+    <color name="colorAccent">#FF505F</color>
+    <color name="launch_bg">#F3F3F3</color>
+    <color name="biliPink">#FB7299</color>
+    <color name="biliPinkDark">#C85B79</color>
+    <color name="aliveRed">#FF505F</color>
+    <color name="aliveRedDark">#CB3F4C</color>
+    <color name="coolApkGreen">#4CAF50</color>
+    <color name="coolApkGreenDark">#348538</color>
+    <color name="duckGreen">#009688</color>
+    <color name="duckGreenDark">#007164</color>
+    <color name="skyBlue">#4dc1e6</color>
+    <color name="skyBlueDark">#31a9ce</color>
+    <color name="orange">#ff9000</color>
+    <color name="orangeDark">#ef7630</color>
+</resources>

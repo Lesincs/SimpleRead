@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp">
+
+    <com.lesincs.simpleread.custom.CustomViewPager
+        android:id="@+id/viewPagerNPF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/llIndicatorNPF"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="7dp"
+        android:gravity="center">
+
+        <View
+            android:id="@+id/indicator0"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/indicator_choose" />
+
+        <View
+            android:id="@+id/indicator1"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/indicator_not_choose" />
+
+        <View
+            android:id="@+id/indicator2"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/indicator_not_choose" />
+
+        <View
+            android:id="@+id/indicator3"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/indicator_not_choose" />
+
+        <View
+            android:id="@+id/indicator4"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/indicator_not_choose" />
+
+    </LinearLayout>
+
+</RelativeLayout>

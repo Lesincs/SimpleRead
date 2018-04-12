@@ -1,0 +1,29 @@
+body{
+     padding:0 7px;
+     background:#ddc69e;
+ }
+ .content{
+     text-align:justify;
+     font-size:17px;
+     line-height:27px;
+     white-space:pre-wrap;
+ }
+ div{
+     margin:0 auto;
+ }
+ .title{
+     text-align:center;
+     font-size:130%;
+     font-weight:bold
+     margin-top:20px;
+ }
+ .author{
+     text-align:center;
+     font-weight:normal;
+     font-size:13px;
+     margin-left:20dp;
+ }
+ p{
+   margin:0;
+   padding:0;
+ }

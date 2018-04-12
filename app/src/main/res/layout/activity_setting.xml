@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+    <fragment
+        android:id="@+id/frag_info"
+        android:name="com.lesincs.simpleread.ui.fragment.SettingFrag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

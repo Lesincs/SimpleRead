@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+
+    <!--白色背景-->
+    <item android:drawable="@color/launch_bg" />
+
+
+        <!--产品logo-->
+    <item>
+    <bitmap
+        android:gravity="center"
+        android:src="@mipmap/ic_launcher1" />
+    </item>
+
+</layer-list>

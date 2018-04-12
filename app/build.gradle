@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '27.0.1'
+    defaultConfig {
+        applicationId "com.lesincs.simpleread"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 15
+        versionName "4.3.31"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+}
+
+kapt {
+    generateStubs = true
+}
+
+greendao{
+    schemaVersion 2 //数据库版本
+    targetGenDir 'src/main/java' //类生成路径
+    daoPackage 'com.lesincs.simpleread.dao' //类生成包名
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //support
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.1'
+    //rxkotlin and retrofit 主要用于网络请求
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //Glide 用于加载图片
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    //滑动返回
+    implementation 'com.r0adkll:slidableactivity:2.0.6'
+    //fabMenu
+    implementation 'com.github.clans:fab:1.6.4'
+    //用于解析网页数据
+    implementation 'org.jsoup:jsoup:1.11.2'
+    //prefer 设置和关于界面需要这个
+    implementation 'com.android.support:preference-v7:26.1.0'
+    implementation 'com.android.support:preference-v14:26.1.0'
+    //减少adapter70%代码
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.21'
+    //解决CollapsingToolbar最多显示一行标题的问题
+    implementation 'net.opacapp:multiline-collapsingtoolbar:27.1.0'
+    //GreenDao 用于本地数据存储
+    implementation 'org.greenrobot:greendao:3.2.2'
+    //RxLifecycle 方便取消RxJava订阅
+    implementation 'com.github.nekocode.rxlifecycle:rxlifecycle:2.0'
+    implementation 'com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0'
+}

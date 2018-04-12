@@ -1,0 +1,32 @@
+body{
+     padding:0 7px;
+     background:black;
+ }
+ .content{
+     text-align:justify;
+     font-size:17px;
+     line-height:27px;
+     white-space:pre-wrap;
+     color:white;
+ }
+ div{
+     margin:0 auto;
+ }
+ .title{
+     text-align:center;
+     font-size:130%;
+     font-weight:bold
+     margin-top:20px;
+     color:white;
+ }
+ .author{
+     text-align:center;
+     font-weight:normal;
+     font-size:13px;
+     margin-left:20dp;
+     color:white;
+ }
+ p{
+   margin:0;
+   padding:0;
+ }

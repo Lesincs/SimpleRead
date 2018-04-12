@@ -1,0 +1,168 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/defaultColor</item>
+        <item name="colorPrimaryDark">@color/defaultColorDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+
+        <!--//drawer透明 暂时不需要-->
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+    </style>
+
+
+    <style name="WellComeActivity" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+
+    <style name="SlideExitActivityTheme" parent="AppTheme">
+        //slidr需要 设置背景透明
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        //滑动返回效果更好
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    //页面详情需要状态栏透明
+
+    <style name="NewsDetailTheme" parent="SlideExitActivityTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <!--<style name="DailyArticleTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+        <!--<item name="android:windowIsTranslucent">false</item>-->
+        <!--<item name="android:windowBackground">@android:color/white</item>-->
+    <!--</style>-->
+
+
+    //默认主题
+    <style name="DefaultTheme" parent="SlideExitActivityTheme">
+        <item name="colorPrimary">@color/defaultColor</item>
+        <item name="colorPrimaryDark">@color/defaultColorDark</item>
+        <item name="colorAccent">@color/defaultColor</item>
+    </style>
+
+
+    <style name="DefaultThemeMain" parent="AppTheme">
+        <item name="colorPrimary">@color/defaultColor</item>
+        <item name="colorPrimaryDark">@color/defaultColorDark</item>
+        <item name="colorAccent">@color/defaultColor</item>
+    </style>
+
+    //bili粉
+    <style name="BiliPinkTheme" parent="SlideExitActivityTheme">
+        <item name="colorPrimary">@color/biliPink</item>
+        <item name="colorPrimaryDark">@color/biliPinkDark</item>
+        <item name="colorAccent">@color/biliPink</item>
+    </style>
+
+    <style name="BiliPinkThemeMain" parent="AppTheme">
+        <item name="colorPrimary">@color/biliPink</item>
+        <item name="colorPrimaryDark">@color/biliPinkDark</item>
+        <item name="colorAccent">@color/biliPink</item>
+    </style>
+
+    //活力红
+    <style name="AliveRedTheme" parent="SlideExitActivityTheme">
+        <item name="colorPrimary">@color/aliveRed</item>
+        <item name="colorPrimaryDark">@color/aliveRedDark</item>
+        <item name="colorAccent">@color/aliveRed</item>
+    </style>
+
+    <style name="AliveRedThemeMain" parent="AppTheme">
+        <item name="colorPrimary">@color/aliveRed</item>
+        <item name="colorPrimaryDark">@color/aliveRedDark</item>
+        <item name="colorAccent">@color/aliveRed</item>
+    </style>
+
+    //酷安绿
+    <style name="CoolApkGreenTheme" parent="SlideExitActivityTheme">
+        <item name="colorPrimary">@color/coolApkGreen</item>
+        <item name="colorPrimaryDark">@color/coolApkGreenDark</item>
+        <item name="colorAccent">@color/coolApkGreen</item>
+    </style>
+
+    <style name="CoolApkGreenThemeMain" parent="AppTheme">
+        <item name="colorPrimary">@color/coolApkGreen</item>
+        <item name="colorPrimaryDark">@color/coolApkGreenDark</item>
+        <item name="colorAccent">@color/coolApkGreen</item>
+    </style>
+
+    //水鸭青
+
+    <style name="DuckGreenTheme" parent="SlideExitActivityTheme">
+        <item name="colorPrimary">@color/duckGreen</item>
+        <item name="colorPrimaryDark">@color/duckGreenDark</item>
+        <item name="colorAccent">@color/duckGreen</item>
+    </style>
+
+    <style name="DuckGreenThemeMain" parent="AppTheme">
+        <item name="colorPrimary">@color/duckGreen</item>
+        <item name="colorPrimaryDark">@color/duckGreenDark</item>
+        <item name="colorAccent">@color/duckGreen</item>
+    </style>
+
+    //天空蓝
+
+    <style name="SkyBlueTheme" parent="SlideExitActivityTheme">
+        <item name="colorPrimary">@color/skyBlue</item>
+        <item name="colorPrimaryDark">@color/skyBlueDark</item>
+        <item name="colorAccent">@color/skyBlue</item>
+    </style>
+
+    <style name="SkyBlueThemeMain" parent="AppTheme">
+        <item name="colorPrimary">@color/skyBlue</item>
+        <item name="colorPrimaryDark">@color/skyBlueDark</item>
+        <item name="colorAccent">@color/skyBlue</item>
+    </style>
+
+    //橙色
+
+    <style name="OrangeTheme" parent="SlideExitActivityTheme">
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimaryDark">@color/orangeDark</item>
+        <item name="colorAccent">@color/orange</item>
+    </style>
+
+    <style name="OrangeThemeMain" parent="AppTheme">
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimaryDark">@color/orangeDark</item>
+        <item name="colorAccent">@color/orange</item>
+    </style>
+
+    //页面详情展开字体主题
+
+    <style name="ExpandTitleTextStyle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">21.5sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:maxLines">3</item>
+    </style>
+
+    //页面详情折叠字体主题
+
+    <style name="CollapsedTitleTextStyle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">21.5sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+    //时间选择器背景
+
+    <style name="MyDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">?attr/colorAccent</item>
+    </style>
+
+    <style name="TextAppearance.ExpandedTitle"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+</resources>

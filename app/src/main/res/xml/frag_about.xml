@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/app_name">
+        <Preference
+            android:summary="@string/version_summary"
+            android:title="@string/version_title" />
+        <Preference
+            android:summary="@string/introduction_summary"
+            android:title="@string/introduction_title" />
+        <Preference
+            android:key="open_source"
+            android:title="@string/open_source_title"
+            android:summary="@string/open_source_summary"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/author">
+        <Preference
+            android:summary="@string/author_summary"
+            android:title="@string/author_title" />
+        <Preference
+            android:key="google_mail"
+            android:summary="@string/google_mail_summary"
+            android:title="@string/google_mail_title" />
+        <Preference
+            android:key="qq_mail"
+            android:summary="@string/fox_mail_summary"
+            android:title="@string/fox_mail_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/encourage_author">
+        <Preference
+            android:key="give_a_five_star"
+            android:summary="@string/give_a_five_star_summary"
+            android:title="@string/give_a_five_star_title" />
+        <Preference
+            android:key="donate_author"
+            android:summary="@string/donate_author_summary"
+            android:title="@string/donate_author_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_material_light"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true">
+
+
+        <net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
+            android:id="@+id/ctl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:collapsedTitleGravity="left"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="bottom|left"
+            app:expandedTitleMarginBottom="47.5dp"
+            app:expandedTitleMarginEnd="20dp"
+            app:expandedTitleMarginStart="27.5dp"
+            app:expandedTitleTextAppearance="@style/TextAppearance.ExpandedTitle"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:lineSpacingMultiplier="1"
+
+            app:maxLines="2">
+
+            <ImageView
+                android:id="@+id/ivImageUrl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/image_place_holder"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="23.5dp"
+                android:background="@drawable/gradient_statusbar"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="1" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="226.5dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/gradient"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="1" />
+
+            <TextView
+                android:id="@+id/tvImageSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="13dp"
+                android:layout_marginEnd="17.5dp"
+                android:textColor="#F5F5F5"
+                android:textSize="12.5sp"
+                android:textStyle="italic"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.6" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="5dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:nestedScrollingEnabled="false" />
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>
+
+
