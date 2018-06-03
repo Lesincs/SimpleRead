@@ -1,57 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="250dp">
+    android:layout_height="250dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.lesincs.simpleread.custom.CustomViewPager
         android:id="@+id/viewPagerNPF"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <LinearLayout
-        android:id="@+id/llIndicatorNPF"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
+    <nov.lesincs.twogoods.cusotom.CirclePointIndicator
+        android:id="@+id/cpiNPF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="7dp"
-        android:gravity="center">
+        android:layout_marginBottom="9dp"
+        app:circlePointRadius="1.2dp"
+        android:gravity="center"
+        app:unselectedCirclePointColor="#55FFFFFF"
+        app:selectedCirclePointColor="#FFFFFF"/>
 
-        <View
-            android:id="@+id/indicator0"
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/indicator_choose" />
-
-        <View
-            android:id="@+id/indicator1"
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/indicator_not_choose" />
-
-        <View
-            android:id="@+id/indicator2"
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/indicator_not_choose" />
-
-        <View
-            android:id="@+id/indicator3"
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/indicator_not_choose" />
-
-        <View
-            android:id="@+id/indicator4"
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/indicator_not_choose" />
-
-    </LinearLayout>
 
 </RelativeLayout>

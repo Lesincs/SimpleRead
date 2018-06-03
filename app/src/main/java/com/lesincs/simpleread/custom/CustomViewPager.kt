@@ -3,6 +3,8 @@ package com.lesincs.simpleread.custom
 import android.content.Context
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
+import android.view.MotionEvent
+import android.view.ViewConfiguration
 import android.widget.LinearLayout
 import cn.nekocode.rxlifecycle.LifecycleEvent
 import cn.nekocode.rxlifecycle.compact.RxLifecycleCompact
@@ -28,8 +30,7 @@ class CustomViewPager : ViewPager {
 
     private var mDisposable: Disposable? = null
     private var topStories = ArrayList<TopStory>()
-    lateinit var llIndicatorNPF: LinearLayout
-
+    private  var  lastx:Float = 0f
     fun update(topStories: List<TopStory>) {
         if (!this.topStories.containsAll(topStories)) {
             this.topStories.clear()
@@ -39,11 +40,9 @@ class CustomViewPager : ViewPager {
     }
 
 
-    fun init(llIndicatorNPF: LinearLayout, frag: ZHNewsListFrag) {
+    fun init(frag: ZHNewsListFrag) {
 
         adapter = BannerAdapter(this.topStories, context)
-        addOnPageChangeListener(onPageChangeListener)
-        this.llIndicatorNPF = llIndicatorNPF
 
         RxLifecycleCompact.bind(frag).toObservable()
                 .subscribe {
@@ -75,47 +74,6 @@ class CustomViewPager : ViewPager {
                     }
                 })
         return mDisposable
-    }
-
-
-    private val onPageChangeListener = object : ViewPager.OnPageChangeListener {
-        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-
-        }
-
-        override fun onPageScrollStateChanged(state: Int) {}
-
-        override fun onPageSelected(position: Int) {
-
-            with(llIndicatorNPF) {
-                when (position) {
-                    0 -> {
-                        indicator0.setBackgroundResource(R.drawable.indicator_choose)
-                        indicator1.setBackgroundResource(R.drawable.indicator_not_choose)
-                        indicator4.setBackgroundResource(R.drawable.indicator_not_choose)
-                    }
-                    1 -> {
-                        indicator1.setBackgroundResource(R.drawable.indicator_choose)
-                        indicator0.setBackgroundResource(R.drawable.indicator_not_choose)
-                        indicator2.setBackgroundResource(R.drawable.indicator_not_choose)
-                    }
-                    2 -> {
-                        indicator2.setBackgroundResource(R.drawable.indicator_choose)
-                        indicator1.setBackgroundResource(R.drawable.indicator_not_choose)
-                        indicator3.setBackgroundResource(R.drawable.indicator_not_choose)
-                    }
-                    3 -> {
-                        indicator3.setBackgroundResource(R.drawable.indicator_choose)
-                        indicator2.setBackgroundResource(R.drawable.indicator_not_choose)
-                        indicator4.setBackgroundResource(R.drawable.indicator_not_choose)
-                    }
-                    4 -> {
-                        indicator4.setBackgroundResource(R.drawable.indicator_choose)
-                        indicator3.setBackgroundResource(R.drawable.indicator_not_choose)
-                    }
-                }
-            }
-        }
     }
 
 }

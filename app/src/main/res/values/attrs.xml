@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CirclePointIndicator">
+        <attr name="indicatorCount" format="integer"/>
+        <attr name="selectedCirclePointColor" format="color"/>
+        <attr name="unselectedCirclePointColor" format="color"/>
+        <attr name="circlePointRadius" format="dimension" />
+        <attr name="indicatorSpace" format="dimension"/>
+    </declare-styleable>
+</resources>

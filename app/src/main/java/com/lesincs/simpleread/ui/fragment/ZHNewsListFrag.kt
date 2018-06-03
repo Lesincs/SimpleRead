@@ -33,6 +33,8 @@ import com.lesincs.simpleread.util.CalenderUtil
 import com.lesincs.simpleread.util.PrefUtil
 import kotlinx.android.synthetic.main.frag_zh_news_prev.*
 import kotlinx.android.synthetic.main.item_news_prev.view.*
+import kotlinx.android.synthetic.main.view_banner.*
+import nov.lesincs.twogoods.cusotom.CirclePointIndicator
 
 
 /**
@@ -55,6 +57,7 @@ class ZHNewsListFrag : ZHNewsPrevContract.View, LazyInitFragment() {
     val presenter = ZHNewsPrevPresenter(this)
     private lateinit var banner: CustomViewPager
     private lateinit var fabMenu: MyFloatingActionMenu
+    private lateinit var circlePointIndicator:CirclePointIndicator
 
     override fun loadData() {
         presenter.onStart()
@@ -118,15 +121,17 @@ class ZHNewsListFrag : ZHNewsPrevContract.View, LazyInitFragment() {
         recyclerViewNPF.layoutManager = linearLayoutManager
 
         val bannerParent = LayoutInflater.from(context).inflate(R.layout.view_banner, recyclerViewNPF.parent as ViewGroup, false)
+        circlePointIndicator =bannerParent.findViewById(R.id.cpiNPF)
         initAdapter()
         recyclerViewNPF.adapter = adapter
         adapter.addHeaderView(bannerParent)
-        banner = bannerParent.findViewById(R.id.viewPagerNPF) as CustomViewPager
-        banner.init(bannerParent.findViewById(R.id.llIndicatorNPF) as LinearLayout, this)
+        banner = bannerParent.findViewById(R.id.viewPagerNPF)
+        banner.init(this)
         recyclerViewNPF.addOnScrollListener(onScrollListener)
         swipeRefreshLayout.setColorSchemeColors(getAccentColor())
         swipeRefreshLayout.setOnRefreshListener { presenter.onRefresh() }
         fabMenu = activity!!.findViewById(R.id.fabMenu)
+        circlePointIndicator.bindToViewPager(banner)
     }
 
     private fun initAdapter() {
