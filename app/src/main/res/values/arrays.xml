@@ -33,4 +33,9 @@
         <item>ITEM_ANIM_SCALE</item>
     </string-array>
 
+    <string-array name="news_type">
+        <item>知乎日报</item>
+        <item>新鲜事</item>
+    </string-array>
+
 </resources>

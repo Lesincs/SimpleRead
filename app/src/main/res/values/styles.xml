@@ -165,4 +165,11 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    //spinner
+    <style name="SpinnerTheme" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textSize">20dp</item>
+        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 </resources>

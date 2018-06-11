@@ -5,17 +5,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v4.view.ViewPager
+import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.util.TypedValue
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.view.WindowManager
+import android.view.*
+import android.widget.PopupMenu
 import android.widget.Toast
 import com.lesincs.simpleread.R
 import com.lesincs.simpleread.base.BaseActivity
-import com.lesincs.simpleread.ui.adapter.FragAdapter
 import com.lesincs.simpleread.ui.fragment.DAILY_ARTICLE_PAGE_TYPE
 import com.lesincs.simpleread.ui.fragment.DailyArticlePageType
 import com.lesincs.simpleread.ui.fragment.JDNewsListFrag
@@ -23,8 +20,7 @@ import com.lesincs.simpleread.ui.fragment.ZHNewsListFrag
 import com.lesincs.simpleread.util.CalenderUtil
 import com.lesincs.simpleread.util.CircleRevealAnimUtil
 import com.lesincs.simpleread.util.PrefUtil
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.common_toolbar.*
+import kotlinx.android.synthetic.main.activity_main_new.*
 import kotlinx.android.synthetic.main.floating_action_bar_menu.*
 import java.util.*
 
@@ -34,8 +30,7 @@ class MainActivity : BaseActivity() {
     private var lastOnBackPressTime: Long = 0
     private lateinit var zhNewsPrevFrag: ZHNewsListFrag
     private lateinit var JDNewsListFrag: JDNewsListFrag
-    private val ZH_NEWS_PREV_FRAG_KEY = "ZH_NEWS_PREV_FRAG_KEY"
-    private val JD_NEWS_PREV_FRAG_KEY = "JD_NEWS_PREV_FRAG_KEY"
+    private lateinit var currentFrag: Fragment
 
     override fun afterOnCreate(savedInstanceState: Bundle?) {
         initView(savedInstanceState)
@@ -43,45 +38,93 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initView(savedInstanceState: Bundle?) {
-        setSupportActionBar(toolbar)
-        supportActionBar?.setTitle(R.string.toolbar_zh_frag)
+        //初始化spinner
+        spinner.setItems(getString(R.string.toolbar_zh_frag), getString(R.string.toolbar_jd_frag))
 
-        if (savedInstanceState != null) {
-            zhNewsPrevFrag = supportFragmentManager.getFragment(savedInstanceState, ZH_NEWS_PREV_FRAG_KEY) as ZHNewsListFrag
-            JDNewsListFrag = supportFragmentManager.getFragment(savedInstanceState, JD_NEWS_PREV_FRAG_KEY) as JDNewsListFrag
+        //初始化fragment
+        zhNewsPrevFrag = ZHNewsListFrag()
+        JDNewsListFrag = JDNewsListFrag()
+
+        //根据上次退出的界面加载fragment
+        if (PrefUtil.getCurrentItem() == 0) {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, zhNewsPrevFrag).commit()
+            currentFrag = zhNewsPrevFrag
+            spinner.selectedIndex = 0
         } else {
-            zhNewsPrevFrag = ZHNewsListFrag()
-            JDNewsListFrag = JDNewsListFrag()
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, JDNewsListFrag).commit()
+            currentFrag = JDNewsListFrag
+            spinner.selectedIndex = 1
         }
 
-        viewPagerAM.offscreenPageLimit = 1
-        viewPagerAM.adapter = FragAdapter(supportFragmentManager, listOf(zhNewsPrevFrag, JDNewsListFrag))
-        viewPagerAM.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {}
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-            override fun onPageSelected(position: Int) {
-                when (position) {
-                    0 -> {
-                        toolbar.setTitle(R.string.toolbar_zh_frag)
-                        showFabMenu()
+        //设置spinner切换的监听
+        spinner.setOnItemSelectedListener { view, position, id, item ->
+            when (position) {
+                0 -> {
+                    showFabMenu()
+                    switchFrag(zhNewsPrevFrag)
+                }
+                1 -> {
+                    if (isFirstStart) {
+                        isFirstStart = false
+                        fabMenu.postDelayed({ hideFabMenu() }, 300)
+                    } else {
+                        hideFabMenu()
                     }
-                    1 -> {
-                        toolbar.setTitle(R.string.toolbar_jd_frag)
-                        if (isFirstStart) {
-                            isFirstStart = false
-                            fabMenu.postDelayed({ hideFabMenu() }, 300)
-                        } else {
-                            hideFabMenu()
-                        }
-                    }
+                    switchFrag(JDNewsListFrag)
                 }
             }
-        })
-
-        val currentItem = PrefUtil.getCurrentItem()
-        if (currentItem == 1) {
-            viewPagerAM.currentItem = currentItem
         }
+
+        //初始化菜单栏
+        ivMenu.setOnClickListener {
+            val popMenu = PopupMenu(this, ivMenu, Gravity.CENTER)
+            popMenu.inflate(R.menu.menu_activity_main)
+            popMenu.setOnMenuItemClickListener {
+                when (it!!.itemId) {
+                    R.id.action_about -> {
+                        InfoActivity.startSelf(this)
+                    }
+                    R.id.action_change_theme -> {
+                        val themes = arrayOf(R.string.default_color,
+                                R.string.alive_red,
+                                R.string.bili_pink,
+                                R.string.cool_apk_green,
+                                R.string.duck_green,
+                                R.string.sky_blue,
+                                R.string.orange).map { getText(it) }.toTypedArray()
+
+                        AlertDialog.Builder(this)
+                                .setSingleChoiceItems(themes, PrefUtil.getTheme(), { d, p ->
+                                    if (p != PrefUtil.getTheme()) {
+                                        PrefUtil.saveTheme(p)
+                                        onChangeTheme(p)
+                                    }
+                                    d.dismiss()
+                                }).show()
+                    }
+                    R.id.action_collection -> {
+                        CollectionActivity.startSelf(this)
+                    }
+                    R.id.action_setting -> {
+                        SettingActivity.startSelf(this)
+                    }
+                }
+                return@setOnMenuItemClickListener true
+            }
+            popMenu.show()
+        }
+    }
+
+    private fun switchFrag(willShowFrag: Fragment) {
+        if (currentFrag == willShowFrag)
+            return
+
+        if (!willShowFrag.isAdded) {
+            supportFragmentManager.beginTransaction().add(R.id.fragment_container, willShowFrag).commit()
+        }
+
+        supportFragmentManager.beginTransaction().hide(currentFrag).show(willShowFrag).commit()
+        currentFrag = willShowFrag
     }
 
     private fun initFabListener() {
@@ -142,7 +185,8 @@ class MainActivity : BaseActivity() {
         theme.resolveAttribute(R.attr.colorPrimaryDark, colorPrimaryDarkTV, true)
         val colorPrimary = resources.getColor(colorPrimaryTV.resourceId)
         val colorPrimaryDark = resources.getColor(colorPrimaryDarkTV.resourceId)
-        toolbar.setBackgroundColor(colorPrimary)
+        rlToolbar.setBackgroundColor(colorPrimary)
+        spinner.setBackgroundColor(colorPrimary)
         WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
         window.statusBarColor = colorPrimaryDark
         hideFabMenu()
@@ -164,51 +208,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun getLayoutId(): Int {
-        return R.layout.activity_main
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        supportFragmentManager.putFragment(outState, ZH_NEWS_PREV_FRAG_KEY, zhNewsPrevFrag)
-        supportFragmentManager.putFragment(outState, JD_NEWS_PREV_FRAG_KEY, JDNewsListFrag)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_activity_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            R.id.action_about -> {
-                InfoActivity.startSelf(this)
-            }
-            R.id.action_change_theme -> {
-                val themes = arrayOf(R.string.default_color,
-                        R.string.alive_red,
-                        R.string.bili_pink,
-                        R.string.cool_apk_green,
-                        R.string.duck_green,
-                        R.string.sky_blue,
-                        R.string.orange).map { getText(it) }.toTypedArray()
-
-                AlertDialog.Builder(this)
-                        .setSingleChoiceItems(themes, PrefUtil.getTheme(), { d, p ->
-                            if (p != PrefUtil.getTheme()) {
-                                PrefUtil.saveTheme(p)
-                                onChangeTheme(p)
-                            }
-                            d.dismiss()
-                        }).show()
-            }
-            R.id.action_collection -> {
-                CollectionActivity.startSelf(this)
-            }
-            R.id.action_setting -> {
-                SettingActivity.startSelf(this)
-            }
-        }
-        return super.onOptionsItemSelected(item)
+        return R.layout.activity_main_new
     }
 
     private fun hideFabMenu() {
@@ -220,7 +220,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showFabMenu() {
-        if (viewPagerAM.currentItem == 1)
+        if (spinner.selectedIndex == 1)
             return
         fabMenu.customShow()
     }
@@ -234,9 +234,9 @@ class MainActivity : BaseActivity() {
         val currentOnBackPressTime = System.currentTimeMillis()
 
         if (currentOnBackPressTime - lastOnBackPressTime < 2000) {
-            finishSelf()
+            finish()
         } else {
-            Snackbar.make(viewPagerAM, R.string.press_again_to_exit, Snackbar.LENGTH_SHORT)
+            Snackbar.make(spinner, R.string.press_again_to_exit, Snackbar.LENGTH_SHORT)
                     .setAction(R.string.exit, { finish() })
                     .show()
             lastOnBackPressTime = currentOnBackPressTime
@@ -250,10 +250,9 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onDestroy() {
-        PrefUtil.saveCurrentItem(viewPagerAM.currentItem)
+        PrefUtil.saveCurrentItem(spinner.selectedIndex)
         super.onDestroy()
     }
-
 
 }
 

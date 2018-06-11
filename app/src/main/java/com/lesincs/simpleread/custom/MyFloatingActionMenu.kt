@@ -7,6 +7,7 @@ import android.support.design.widget.CoordinatorLayout
 import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.util.AttributeSet
 import android.view.View
+import android.widget.RelativeLayout
 import com.github.clans.fab.FloatingActionMenu
 
 /**
@@ -30,7 +31,7 @@ class MyFloatingActionMenu : FloatingActionMenu {
             close(true)
             return
         }
-        val fabMenuY = height.toFloat() + (layoutParams as CoordinatorLayout.LayoutParams).bottomMargin
+        val fabMenuY = height.toFloat() + (layoutParams as RelativeLayout.LayoutParams).bottomMargin
         isInHideAnimation =true
         animate().
                 translationY(fabMenuY)

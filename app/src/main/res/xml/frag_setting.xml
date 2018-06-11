@@ -3,7 +3,7 @@
     <PreferenceCategory android:title="动画设置">
         <ListPreference
             android:key="ACTIVITY_ANIM"
-            android:defaultValue="ACTIVITY_ANIM_SLIDE_IN_SLIDE_OUT_NORMAL"
+            android:defaultValue="ACTIVITY_ANIM_SLIDE_IN_SLIDE_OUT_FAST"
             android:dialogTitle="设置Activity切换动画"
             android:entries="@array/activity_anim"
             android:entryValues="@array/activity_anim_values"

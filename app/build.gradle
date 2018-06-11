@@ -10,8 +10,8 @@ android {
         applicationId "com.lesincs.simpleread"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 15
-        versionName "4.3.31"
+        versionCode 16
+        versionName "4.6.11"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -73,4 +73,6 @@ dependencies {
     //RxLifecycle 方便取消RxJava订阅
     implementation 'com.github.nekocode.rxlifecycle:rxlifecycle:2.0'
     implementation 'com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0'
+    //material spinner
+    compile 'com.jaredrummler:material-spinner:1.2.5'
 }

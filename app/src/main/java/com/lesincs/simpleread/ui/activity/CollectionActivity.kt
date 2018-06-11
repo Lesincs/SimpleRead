@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.common_toolbar.*
 class CollectionActivity : BaseActivity() {
 
     override fun afterOnCreate(savedInstanceState: Bundle?) {
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbarCollection)
         supportActionBar?.setTitle(R.string.toolbar_collection)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

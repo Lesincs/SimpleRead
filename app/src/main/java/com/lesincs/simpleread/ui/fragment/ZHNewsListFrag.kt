@@ -18,6 +18,7 @@ import android.widget.Toast
 import cn.nekocode.rxlifecycle.RxLifecycle
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.lesincs.simpleread.R
+import com.lesincs.simpleread.base.BaseFrag
 import com.lesincs.simpleread.base.LazyInitFragment
 import com.lesincs.simpleread.bean.DBZHNews
 import com.lesincs.simpleread.bean.NewsPrevItem
@@ -47,8 +48,7 @@ enum class DailyArticlePageType {
     TODAYPAGE, RANDOMPAGE
 }
 
-class ZHNewsListFrag : ZHNewsPrevContract.View, LazyInitFragment() {
-
+class ZHNewsListFrag : ZHNewsPrevContract.View, BaseFrag() {
 
     private val newsListItems = ArrayList<NewsPrevItem>()
     private val topStories = ArrayList<TopStory>()
@@ -58,10 +58,6 @@ class ZHNewsListFrag : ZHNewsPrevContract.View, LazyInitFragment() {
     private lateinit var banner: CustomViewPager
     private lateinit var fabMenu: MyFloatingActionMenu
     private lateinit var circlePointIndicator:CirclePointIndicator
-
-    override fun loadData() {
-        presenter.onStart()
-    }
 
     override fun updateBanner(topStories: List<TopStory>) {
         this.topStories.clear()
@@ -118,6 +114,11 @@ class ZHNewsListFrag : ZHNewsPrevContract.View, LazyInitFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+        presenter.onStart()
+    }
+
+    private fun initView() {
         recyclerViewNPF.layoutManager = linearLayoutManager
 
         val bannerParent = LayoutInflater.from(context).inflate(R.layout.view_banner, recyclerViewNPF.parent as ViewGroup, false)
@@ -198,7 +199,7 @@ class ZHNewsListFrag : ZHNewsPrevContract.View, LazyInitFragment() {
     }
 
     fun changeSwipeColor(color: Int) {
-        swipeRefreshLayout.setColorSchemeColors(color)
+        swipeRefreshLayout?.setColorSchemeColors(color)
     }
 
     private val onScrollListener = object : RecyclerView.OnScrollListener() {
@@ -238,7 +239,7 @@ class ZHNewsListFrag : ZHNewsPrevContract.View, LazyInitFragment() {
     }
 
     override fun hideRefreshIndicator() {
-        swipeRefreshLayout.isRefreshing = false
+        swipeRefreshLayout?.isRefreshing = false
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

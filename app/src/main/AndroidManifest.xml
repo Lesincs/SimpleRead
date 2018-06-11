@@ -12,11 +12,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher1"
         android:supportsRtl="true"
+        android:persistent="true"
         android:theme="@style/AppTheme">
 
         <activity
             android:name=".ui.activity.MainActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize"
+             />
 
         <activity
             android:name=".ui.activity.ZHNewsDetailActivity"

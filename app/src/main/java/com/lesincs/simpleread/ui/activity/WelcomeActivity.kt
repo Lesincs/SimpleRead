@@ -1,15 +1,19 @@
 package com.lesincs.simpleread.ui.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.widget.Spinner
+import android.widget.SpinnerAdapter
 import android.widget.Toast
 import cn.nekocode.rxlifecycle.RxLifecycle
 import com.lesincs.simpleread.R
 import com.lesincs.simpleread.mvp.jdnewsprevmvp.JDNewsPrevModel
 import com.lesincs.simpleread.mvp.zhnewsprevmvp.ZHNewsPrevModel
 import com.lesincs.simpleread.util.PrefUtil
+
 
 class WelcomeActivity : AppCompatActivity() {
 

@@ -103,7 +103,7 @@ class PrefUtil {
         }
 
         fun getActivityAnim(): String {
-            return defaultPref.getString(ACTIVITY_ANIM, ACTIVITY_ANIM_SLIDE_IN_SLIDE_OUT_NORMAL)
+            return defaultPref.getString(ACTIVITY_ANIM, ACTIVITY_ANIM_SLIDE_IN_SLIDE_OUT_FAST)
         }
 
         fun getItemAnim(): String {

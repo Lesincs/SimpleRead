@@ -13,6 +13,7 @@ import android.view.View
 import cn.nekocode.rxlifecycle.RxLifecycle
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.lesincs.simpleread.R
+import com.lesincs.simpleread.base.BaseFrag
 import com.lesincs.simpleread.base.LazyInitFragment
 import com.lesincs.simpleread.bean.DBJDNews
 import com.lesincs.simpleread.bean.Post
@@ -29,13 +30,9 @@ import kotlinx.android.synthetic.main.item_news_prev.view.*
 /**
  * Created by Administrator on 2018/1/23.
  */
-class JDNewsListFrag : LazyInitFragment(), JDNewsPrevContract.View {
+class JDNewsListFrag : BaseFrag(), JDNewsPrevContract.View {
     override fun getRxLifecycle(): RxLifecycle {
         return RxLifecycle.bind(context as Activity)
-    }
-
-    override fun loadData() {
-        presenter.onStart()
     }
 
     private val presenter = JDNewsPrevPresenter(this)
@@ -47,6 +44,7 @@ class JDNewsListFrag : LazyInitFragment(), JDNewsPrevContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        presenter.onStart()
     }
 
     private fun getAccentColor(): Int {
@@ -55,7 +53,7 @@ class JDNewsListFrag : LazyInitFragment(), JDNewsPrevContract.View {
         return resources.getColor(colorAccentTV.resourceId)
     }
     fun changeSwipeColor(color:Int){
-        swipeRefreshLayoutFJDFNP.setColorSchemeColors(color)
+        swipeRefreshLayoutFJDFNP?.setColorSchemeColors(color)
     }
     private fun initView() {
         initAdapter()
@@ -131,7 +129,7 @@ class JDNewsListFrag : LazyInitFragment(), JDNewsPrevContract.View {
     }
 
     override fun hideRefreshIndicator() {
-        swipeRefreshLayoutFJDFNP.isRefreshing = false
+        swipeRefreshLayoutFJDFNP?.isRefreshing = false
     }
 
     override fun showLatestFreshNews(posts: List<Post>) {
