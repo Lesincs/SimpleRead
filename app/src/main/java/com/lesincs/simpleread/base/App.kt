@@ -6,6 +6,7 @@ import com.lesincs.simpleread.dao.DaoMaster
 import com.lesincs.simpleread.dao.DaoSession
 
 
+
 /**
  * Created by Administrator on 2017/12/17.
  */
@@ -17,7 +18,7 @@ class App : Application() {
         sContext = applicationContext
 
         /*子线程初始化GreenDao*/
-        Thread{
+        Thread {
             val helper = DaoMaster.DevOpenHelper(this, "simpleread.db") //获取helper对象
             val db = helper.writableDb // 获得db对象
             val daoMaster = DaoMaster(db) //获得daoMaster对象
@@ -30,7 +31,7 @@ class App : Application() {
 
         lateinit var sContext: Context
 
-        lateinit var sDaoSession:DaoSession
+        lateinit var sDaoSession: DaoSession
 
     }
 

@@ -74,5 +74,5 @@ dependencies {
     implementation 'com.github.nekocode.rxlifecycle:rxlifecycle:2.0'
     implementation 'com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0'
     //material spinner
-    compile 'com.jaredrummler:material-spinner:1.2.5'
+    implementation 'com.jaredrummler:material-spinner:1.2.5'
 }

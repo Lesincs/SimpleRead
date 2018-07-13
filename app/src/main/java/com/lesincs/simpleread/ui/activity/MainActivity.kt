@@ -45,17 +45,6 @@ class MainActivity : BaseActivity() {
         zhNewsPrevFrag = ZHNewsListFrag()
         JDNewsListFrag = JDNewsListFrag()
 
-        //根据上次退出的界面加载fragment
-        if (PrefUtil.getCurrentItem() == 0) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, zhNewsPrevFrag).commit()
-            currentFrag = zhNewsPrevFrag
-            spinner.selectedIndex = 0
-        } else {
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, JDNewsListFrag).commit()
-            currentFrag = JDNewsListFrag
-            spinner.selectedIndex = 1
-        }
-
         //设置spinner切换的监听
         spinner.setOnItemSelectedListener { view, position, id, item ->
             when (position) {
@@ -64,14 +53,27 @@ class MainActivity : BaseActivity() {
                     switchFrag(zhNewsPrevFrag)
                 }
                 1 -> {
-                    if (isFirstStart) {
-                        isFirstStart = false
-                        fabMenu.postDelayed({ hideFabMenu() }, 300)
-                    } else {
-                        hideFabMenu()
-                    }
+                    hideFabMenu()
                     switchFrag(JDNewsListFrag)
                 }
+            }
+        }
+
+        //根据上次退出的界面加载fragment
+        if (PrefUtil.getCurrentItem() == 0) {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, zhNewsPrevFrag).commit()
+            currentFrag = zhNewsPrevFrag
+            spinner.selectedIndex = 0
+            showFabMenu()
+        } else {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, JDNewsListFrag).commit()
+            currentFrag = JDNewsListFrag
+            spinner.selectedIndex = 1
+            if (isFirstStart) {
+                isFirstStart = false
+                fabMenu.postDelayed({ hideFabMenu() }, 300)
+            } else {
+                hideFabMenu()
             }
         }
 
