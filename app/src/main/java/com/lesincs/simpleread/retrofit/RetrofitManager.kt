@@ -11,81 +11,54 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 
-/**
- * Created by Administrator on 2017/12/17.
- */
-
 object RetrofitManager {
 
     private val ZHIHU_BASE_URL = "http://news-at.zhihu.com/api/4/news/"
-    private val DAILY_ARTICLE_BASE_URL = "https://interface.meiriyiwen.com/article/"
-    private val JD_FRESHNEWS_BASE_URL = "http://i.jandan.net/"
-    private val CACHE_STATE_NETWORK = 5
-    private val CACHE_STATE_NO_NETWORK = 60 * 60 * 24 * 15
-    private val CACHE_CONTROL_NO_NETWORK = "public, only-if-cached, max-stale=" + CACHE_STATE_NO_NETWORK
-    private val CACHE_CONTROL_NETWORK = "max-age=" + CACHE_STATE_NETWORK
+    private val JD_FRESH_NEWS_BASE_URL = "http://i.jandan.net/"
     private val CACHE_MAX_SIZE = 100 * 1024 * 1024L
-    private var okHttpClient: OkHttpClient? = null
-    private var zhRetrofit: Retrofit? = null
-    private var jdRetrofit: Retrofit? = null
-    private var iZhiHuService: IZhiHuService? = null
-    private var iJDService: IJDService? = null
+    private val okHttpClient: OkHttpClient by lazy { createOkHttpClient() }
+    private val zhRetrofit: Retrofit by lazy { createZHRetrofit() }
+    private val jdRetrofit: Retrofit by lazy { createJDRetrofit() }
+    private val iZhiHuService: IZhiHuService by lazy { zhRetrofit.create(IZhiHuService::class.java) }
+    private val iJDService: IJDService by lazy { jdRetrofit.create(IJDService::class.java) }
 
-    /*返回知乎retrofit实例*/
-    private fun getZHRetrofit(): Retrofit {
-        if (zhRetrofit == null) {
-            zhRetrofit = Retrofit.Builder()
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(getOkHttpClient())
-                    .baseUrl(ZHIHU_BASE_URL)
-                    .build()
-        }
-        return zhRetrofit!!
+    /*创建知乎retrofit实例*/
+    private fun createZHRetrofit(): Retrofit {
+        return Retrofit.Builder()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .baseUrl(ZHIHU_BASE_URL)
+                .build()
     }
 
-    /*返回煎蛋retrofit实例*/
-    private fun getJDRetrofit(): Retrofit {
-        if (jdRetrofit == null) {
-            jdRetrofit = Retrofit.Builder()
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(getOkHttpClient())
-                    .baseUrl(JD_FRESHNEWS_BASE_URL)
-                    .build()
-        }
-        return jdRetrofit!!
+    /*创建煎蛋retrofit实例*/
+    private fun createJDRetrofit(): Retrofit {
+        return Retrofit.Builder()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .baseUrl(JD_FRESH_NEWS_BASE_URL).build()
     }
 
-    /*返回一个带缓存的OkHttpClient*/
-    private fun getOkHttpClient(): OkHttpClient {
-        if (okHttpClient == null) {
-            val cache = Cache(File(App.sContext.cacheDir, "OkHttpCache"), CACHE_MAX_SIZE)
-            okHttpClient = OkHttpClient().newBuilder()
-                    .addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR)
-                    .addInterceptor(OFFLINE_INTERCEPTOR)
-                    .cache(cache)
-                    .retryOnConnectionFailure(true)
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .build()
-        }
-        return okHttpClient!!
+    /*创建一个带缓存的OkHttpClient*/
+    private fun createOkHttpClient(): OkHttpClient {
+        val cache = Cache(File(App.sContext.cacheDir, "OkHttpCache"), CACHE_MAX_SIZE)
+        return OkHttpClient().newBuilder()
+                .addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR)
+                .addInterceptor(OFFLINE_INTERCEPTOR)
+                .cache(cache)
+                .retryOnConnectionFailure(true)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .build()
     }
 
-    /*保证只有一个Service实例*/
     fun getZhiHuService(): IZhiHuService {
-        if (iZhiHuService == null) {
-            iZhiHuService = getZHRetrofit().create(IZhiHuService::class.java)
-        }
-        return iZhiHuService!!
+        return iZhiHuService
     }
 
-    /*保证只有一个Service实例*/
     fun getJDService(): IJDService {
-        if (iJDService == null) {
-            iJDService = getJDRetrofit().create(IJDService::class.java)
-        }
-        return iJDService!!
+        return iJDService
     }
 
     /*有网拦截器 使用缓存的时候需要用到*/
