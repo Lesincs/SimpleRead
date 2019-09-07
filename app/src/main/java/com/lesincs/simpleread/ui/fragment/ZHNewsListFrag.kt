@@ -81,6 +81,17 @@ class ZHNewsListFrag : ZHNewsPrevContract.View, BaseFrag() {
             this.newsListItems.addAll(newsListItems)
             adapter.notifyItemRangeChanged(1, newsListItems.size)
         }
+
+        recyclerViewNPF.post {  loadMoreIfNotFullPage() }
+    }
+
+    private fun loadMoreIfNotFullPage() {
+        val lastComVisiblePos = linearLayoutManager.findLastCompletelyVisibleItemPosition()
+
+        if (lastComVisiblePos + 1 == adapter.itemCount){
+            presenter.onLoadMore(newsListItems.last().date)
+        }
+
     }
 
     override fun showMoreNewsList(newsListItems: List<NewsPrevItem>) {
