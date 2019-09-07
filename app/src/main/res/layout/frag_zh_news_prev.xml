@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -13,8 +13,20 @@
             android:id="@+id/recyclerViewNPF"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F3F3F3"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-    </RelativeLayout>
+            android:background="#F3F3F3" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingStart="20dp"
+            android:background="#f3f3f3"
+            android:visibility="invisible"
+            android:gravity="center_vertical"
+            tools:ignore="RtlSymmetry" />
+
+    </FrameLayout>
+
+
 
 </android.support.v4.widget.SwipeRefreshLayout>

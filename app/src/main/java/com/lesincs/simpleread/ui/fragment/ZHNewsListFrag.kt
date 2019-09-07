@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PopupMenu
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -232,6 +233,17 @@ class ZHNewsListFrag : ZHNewsPrevContract.View, BaseFrag() {
             }
             if (direOffset < THRESHOLD * (-1) && fabMenu.visibility == View.INVISIBLE && !isAnim) {
                 fabMenu.customShow()
+            }
+
+            if (recyclerViewNPF.childCount != 0){
+                val firstPosition = recyclerViewNPF.getChildAdapterPosition(recyclerViewNPF.getChildAt(0))
+
+                if (firstPosition == 0){
+                    tvDate.visibility = View.INVISIBLE
+                }else{
+                    tvDate.visibility = View.VISIBLE
+                    tvDate.text = CalenderUtil.zhDateToFriendlyDate(newsListItems[firstPosition-1].date)
+                }
             }
         }
 
