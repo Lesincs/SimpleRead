@@ -7,7 +7,7 @@
 
     //activity_about
     <string name="version_title">版本</string>
-    <string name="version_summary">4.9.7</string>
+    <string name="version_summary">4.9.8</string>
     <string name="introduction_title">简介</string>
     <string name="introduction_summary">以Kotlin实现的简单纯净的阅读软件,主要使用到MVP+RxJava+Retrofit+RxLifecycle+Glide+GreenDao等技术</string>
     <string name="open_source_title">项目已完全开源,欢迎star交流学习</string>
