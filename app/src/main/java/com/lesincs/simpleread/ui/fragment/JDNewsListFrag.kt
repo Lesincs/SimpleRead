@@ -14,7 +14,6 @@ import cn.nekocode.rxlifecycle.RxLifecycle
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.lesincs.simpleread.R
 import com.lesincs.simpleread.base.BaseFrag
-import com.lesincs.simpleread.base.LazyInitFragment
 import com.lesincs.simpleread.bean.DBJDNews
 import com.lesincs.simpleread.bean.Post
 import com.lesincs.simpleread.custom.*
@@ -23,9 +22,10 @@ import com.lesincs.simpleread.mvp.jdnewsprevmvp.JDNewsPrevContract
 import com.lesincs.simpleread.mvp.jdnewsprevmvp.JDNewsPrevPresenter
 import com.lesincs.simpleread.ui.activity.JDFreshNewsDetailActivity
 import com.lesincs.simpleread.ui.adapter.JDNewsListAdapter
+import com.lesincs.simpleread.util.CalenderUtil
 import com.lesincs.simpleread.util.PrefUtil
 import kotlinx.android.synthetic.main.frag_jd_fresh_news_prev.*
-import kotlinx.android.synthetic.main.item_news_prev.view.*
+import kotlinx.android.synthetic.main.item_news_prev.*
 
 /**
  * Created by Administrator on 2018/1/23.
@@ -163,6 +163,12 @@ class JDNewsListFrag : BaseFrag(), JDNewsPrevContract.View {
         override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             isPullUp = dy > 0
+
+            if (recyclerViewFJDFNP.childCount != 0){
+                tvDateJD.visibility = View.VISIBLE
+                val firstPosition = recyclerViewFJDFNP.getChildAdapterPosition(recyclerViewFJDFNP.getChildAt(0))
+                tvDateJD.text = CalenderUtil.jdDateToFriendlyDate(posts[firstPosition].date)
+            }
         }
 
         override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
@@ -171,7 +177,6 @@ class JDNewsListFrag : BaseFrag(), JDNewsPrevContract.View {
             {
                 presenter.onLoadMore(++currentPage)
             }
-
         }
 
     }
