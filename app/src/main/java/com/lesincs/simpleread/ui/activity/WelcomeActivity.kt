@@ -1,5 +1,6 @@
 package com.lesincs.simpleread.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -19,8 +20,10 @@ class WelcomeActivity : AppCompatActivity() {
 
     private val MIN_STAY_TIME = 700L
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (repeatLaunch()) return
         setContentView(R.layout.activity_wellcome)
         val handler = Handler()
         val launchTime = System.currentTimeMillis()
@@ -64,5 +67,20 @@ class WelcomeActivity : AppCompatActivity() {
                         finish()
                     })
         }
+    }
+
+    private fun repeatLaunch():Boolean {
+        if (!this.isTaskRoot) {
+            val intent = intent
+            if (intent != null) {
+                val action = intent.action
+                if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN == action) {
+                    finish()
+                    return true
+                }
+            }
+        }
+
+        return false
     }
 }
