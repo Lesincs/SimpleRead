@@ -15,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import cn.nekocode.rxlifecycle.RxLifecycle
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -59,6 +60,7 @@ class ZHNewsListFrag : ZHNewsPrevContract.View, BaseFrag() {
     private lateinit var banner: CustomViewPager
     private lateinit var fabMenu: MyFloatingActionMenu
     private lateinit var circlePointIndicator:CirclePointIndicator
+    private lateinit var tvDate:TextView
 
     override fun updateBanner(topStories: List<TopStory>) {
         this.topStories.clear()
@@ -132,6 +134,7 @@ class ZHNewsListFrag : ZHNewsPrevContract.View, BaseFrag() {
 
     private fun initView() {
         recyclerViewNPF.layoutManager = linearLayoutManager
+        tvDate = view!!.findViewById(R.id.tvDate)
 
         val bannerParent = LayoutInflater.from(context).inflate(R.layout.view_banner, recyclerViewNPF.parent as ViewGroup, false)
         circlePointIndicator =bannerParent.findViewById(R.id.cpiNPF)

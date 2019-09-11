@@ -19,13 +19,13 @@ class ZHNewsListAdapter(private val newsPrevItems: List<NewsPrevItem>) : BaseQui
         with(helper.itemView) {
             tvTitle.text = item.title
             com.bumptech.glide.Glide.with(context).load(item.imageUrl).crossFade().error(com.lesincs.simpleread.R.drawable.image_place_holder).into(ivImageUrl)
-            tvDate.text = com.lesincs.simpleread.util.CalenderUtil.zhDateToFriendlyDate(item.date)
             //是够显示日期
-            if (isShowDate(helper.layoutPosition - 1)) {
+            if (isShowDate(helper.adapterPosition - 1)) {
                 tvDate.visibility = android.view.View.VISIBLE
             } else {
                 tvDate.visibility = android.view.View.GONE
             }
+            tvDate.text = com.lesincs.simpleread.util.CalenderUtil.zhDateToFriendlyDate(item.date)
             //字体颜色
             if (com.lesincs.simpleread.dao.DBZHNewsDaoUtil.isNewsRead(item.id)) {
                 tvTitle.setTextColor(Color.parseColor(COLOR_GRAY))
