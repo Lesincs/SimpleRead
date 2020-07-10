@@ -10,8 +10,8 @@ android {
         applicationId "com.lesincs.simpleread"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 20
-        versionName "4.9.11"
+        versionCode 21
+        versionName "4.7.10"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
