@@ -1,7 +1,7 @@
 package com.lesincs.simpleread.mvp.zhnewsprevmvp
 
 import cn.nekocode.rxlifecycle.LifecycleEvent
-import cn.nekocode.rxlifecycle.RxLifecycle
+import cn.nekocode.rxlifecycle.compact.RxLifecycleCompact
 import com.lesincs.simpleread.bean.NewsPrevItem
 import com.lesincs.simpleread.bean.ZHNewsPrevBean
 import com.lesincs.simpleread.retrofit.RetrofitManager
@@ -13,14 +13,14 @@ import io.reactivex.schedulers.Schedulers
  * Created by Administrator on 2018/4/8.
  */
 object ZHNewsPrevModel : ZHNewsPrevContract.Model {
-    override fun getBeforeDateNewsListObs(sDate: String, rxLifecycle: RxLifecycle): Observable<ZHNewsPrevBean> {
+    override fun getBeforeDateNewsListObs(sDate: String, rxLifecycle: RxLifecycleCompact): Observable<ZHNewsPrevBean> {
         return RetrofitManager.getZhiHuService().getBeforeDateNewsListObs(sDate)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(rxLifecycle.disposeObservableWhen(LifecycleEvent.DESTROY))
     }
 
-    override fun getLatestNewsListObs(rxLifecycle: RxLifecycle): Observable<ZHNewsPrevBean> {
+    override fun getLatestNewsListObs(rxLifecycle: RxLifecycleCompact): Observable<ZHNewsPrevBean> {
         return RetrofitManager.getZhiHuService().getLatestNewsListObs()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

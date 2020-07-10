@@ -2,14 +2,11 @@ package com.lesincs.simpleread.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
-import android.widget.Spinner
-import android.widget.SpinnerAdapter
 import android.widget.Toast
-import cn.nekocode.rxlifecycle.RxLifecycle
+import cn.nekocode.rxlifecycle.compact.RxLifecycleCompact
 import com.lesincs.simpleread.R
 import com.lesincs.simpleread.mvp.jdnewsprevmvp.JDNewsPrevModel
 import com.lesincs.simpleread.mvp.zhnewsprevmvp.ZHNewsPrevModel
@@ -29,7 +26,7 @@ class WelcomeActivity : AppCompatActivity() {
         val launchTime = System.currentTimeMillis()
         val currentItem = PrefUtil.getCurrentItem()
         if (currentItem == 0) {
-            ZHNewsPrevModel.getLatestNewsListObs(RxLifecycle.bind(this))
+            ZHNewsPrevModel.getLatestNewsListObs(RxLifecycleCompact.bind(this))
                     .subscribe({
                         val duration = System.currentTimeMillis() - launchTime
                         if (duration <= MIN_STAY_TIME) {
@@ -48,7 +45,7 @@ class WelcomeActivity : AppCompatActivity() {
                         finish()
                     })
         } else {
-            JDNewsPrevModel.getLatestNewsObs(RxLifecycle.bind(this))
+            JDNewsPrevModel.getLatestNewsObs(RxLifecycleCompact.bind(this))
                     .subscribe({
                         val duration = System.currentTimeMillis() - launchTime
                         if (duration <= MIN_STAY_TIME) {

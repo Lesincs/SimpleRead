@@ -1,6 +1,5 @@
 package com.lesincs.simpleread.ui.fragment
 
-import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -10,7 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
-import cn.nekocode.rxlifecycle.RxLifecycle
+import cn.nekocode.rxlifecycle.compact.RxLifecycleCompact
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.lesincs.simpleread.R
 import com.lesincs.simpleread.base.BaseFrag
@@ -31,8 +30,8 @@ import kotlinx.android.synthetic.main.item_news_prev.*
  * Created by Administrator on 2018/1/23.
  */
 class JDNewsListFrag : BaseFrag(), JDNewsPrevContract.View {
-    override fun getRxLifecycle(): RxLifecycle {
-        return RxLifecycle.bind(context as Activity)
+    override fun getRxLifecycle(): RxLifecycleCompact {
+        return RxLifecycleCompact.bind(this)
     }
 
     private val presenter = JDNewsPrevPresenter(this)

@@ -1,6 +1,6 @@
 package com.lesincs.simpleread.mvp.jdnewsprevmvp
 
-import cn.nekocode.rxlifecycle.RxLifecycle
+import cn.nekocode.rxlifecycle.compact.RxLifecycleCompact
 import com.lesincs.simpleread.bean.JDNewsPrevBean
 import com.lesincs.simpleread.bean.Post
 import io.reactivex.Observable
@@ -17,8 +17,8 @@ interface JDNewsPrevContract {
     }
 
     interface Model {
-        fun getLatestNewsObs(rxLifecycle: RxLifecycle): Observable<JDNewsPrevBean>
-        fun getBeforeNewsObs(page: Int, rxLifecycle: RxLifecycle): Observable<JDNewsPrevBean>
+        fun getLatestNewsObs(rxLifecycle: RxLifecycleCompact): Observable<JDNewsPrevBean>
+        fun getBeforeNewsObs(page: Int, rxLifecycle: RxLifecycleCompact): Observable<JDNewsPrevBean>
     }
 
     interface View {
@@ -27,6 +27,6 @@ interface JDNewsPrevContract {
         fun showLatestFreshNews(posts: List<Post>)
         fun showMoreFreshNews(posts: List<Post>)
         fun snackLoadError()
-        fun getRxLifecycle(): RxLifecycle
+        fun getRxLifecycle(): RxLifecycleCompact
     }
 }

@@ -1,6 +1,6 @@
 package com.lesincs.simpleread.mvp.zhnewsprevmvp
 
-import cn.nekocode.rxlifecycle.RxLifecycle
+import cn.nekocode.rxlifecycle.compact.RxLifecycleCompact
 import com.lesincs.simpleread.bean.NewsPrevItem
 import com.lesincs.simpleread.bean.TopStory
 import com.lesincs.simpleread.bean.ZHNewsPrevBean
@@ -21,8 +21,8 @@ interface ZHNewsPrevContract {
     }
 
     interface Model {
-        fun getLatestNewsListObs(rxLifecycle: RxLifecycle): Observable<ZHNewsPrevBean>
-        fun getBeforeDateNewsListObs(sDate: String, rxLifecycle: RxLifecycle): Observable<ZHNewsPrevBean>
+        fun getLatestNewsListObs(rxLifecycle: RxLifecycleCompact): Observable<ZHNewsPrevBean>
+        fun getBeforeDateNewsListObs(sDate: String, rxLifecycle: RxLifecycleCompact): Observable<ZHNewsPrevBean>
         fun getNewsListItemList(newsListBean: ZHNewsPrevBean): List<NewsPrevItem>
     }
 
@@ -35,6 +35,6 @@ interface ZHNewsPrevContract {
         fun showRandomPage(pageId: String)
         fun snackLoadError()
         fun showRandomPageDate(sDate: String)
-        fun getRxLifecycle(): RxLifecycle
+        fun getRxLifecycle(): RxLifecycleCompact
     }
 }

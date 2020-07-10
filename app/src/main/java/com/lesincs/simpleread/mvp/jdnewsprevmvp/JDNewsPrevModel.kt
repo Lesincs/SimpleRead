@@ -1,7 +1,7 @@
 package com.lesincs.simpleread.mvp.jdnewsprevmvp
 
 import cn.nekocode.rxlifecycle.LifecycleEvent
-import cn.nekocode.rxlifecycle.RxLifecycle
+import cn.nekocode.rxlifecycle.compact.RxLifecycleCompact
 import com.lesincs.simpleread.bean.JDNewsPrevBean
 import com.lesincs.simpleread.retrofit.RetrofitManager
 import io.reactivex.Observable
@@ -13,14 +13,14 @@ import io.reactivex.schedulers.Schedulers
  */
 object JDNewsPrevModel : JDNewsPrevContract.Model {
 
-    override fun getLatestNewsObs(rxLifecycle: RxLifecycle): Observable<JDNewsPrevBean> {
+    override fun getLatestNewsObs(rxLifecycle: RxLifecycleCompact): Observable<JDNewsPrevBean> {
         return RetrofitManager.getJDService().getLatestNewsObs()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(rxLifecycle.disposeObservableWhen(LifecycleEvent.DESTROY))
     }
 
-    override fun getBeforeNewsObs(page: Int, rxLifecycle: RxLifecycle): Observable<JDNewsPrevBean> {
+    override fun getBeforeNewsObs(page: Int, rxLifecycle: RxLifecycleCompact): Observable<JDNewsPrevBean> {
         return RetrofitManager.getJDService().getBeforeNewsObs("get_recent_posts",
                 "url,date,tags,author,title,comment_count,custom_fields",
                 "%s",

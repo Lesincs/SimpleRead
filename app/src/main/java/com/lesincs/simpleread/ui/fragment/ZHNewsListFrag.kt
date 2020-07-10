@@ -14,14 +14,12 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import cn.nekocode.rxlifecycle.RxLifecycle
+import cn.nekocode.rxlifecycle.compact.RxLifecycleCompact
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.lesincs.simpleread.R
 import com.lesincs.simpleread.base.BaseFrag
-import com.lesincs.simpleread.base.LazyInitFragment
 import com.lesincs.simpleread.bean.DBZHNews
 import com.lesincs.simpleread.bean.NewsPrevItem
 import com.lesincs.simpleread.bean.TopStory
@@ -118,8 +116,8 @@ class ZHNewsListFrag : ZHNewsPrevContract.View, BaseFrag() {
         toast.show()
     }
 
-    override fun getRxLifecycle(): RxLifecycle {
-        return RxLifecycle.bind(context as Activity)
+    override fun getRxLifecycle(): RxLifecycleCompact {
+        return RxLifecycleCompact.bind(this)
     }
 
     override fun getLayoutId(): Int {

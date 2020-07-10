@@ -1,5 +1,6 @@
 package com.lesincs.simpleread.ui.activity
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -35,6 +36,10 @@ class MainActivity : BaseActivity() {
     override fun afterOnCreate(savedInstanceState: Bundle?) {
         initView(savedInstanceState)
         initFabListener()
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onSaveInstanceState(outState: Bundle?) {
     }
 
     private fun initView(savedInstanceState: Bundle?) {
